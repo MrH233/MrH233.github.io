@@ -41,11 +41,11 @@
 <meta property="og:title" content="博客作业报告">
 <meta property="og:url" content="http://example.com/2024/04/15/%E5%8D%9A%E5%AE%A2%E4%BD%9C%E4%B8%9A%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="奕皓的个人博客">
-<meta property="og:description" content="作业概述Create a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote s">
+<meta property="og:description" content="作业概述&emsp; 本次作业基于Github和Hexo技术，快速部署静态博客网页，博客在运行过程中，不需要后端服务器和数据库支持，仅通过Node.js配合Html、CSS、JS进行配置即可完成博客的部署。部署的难度相对传统C&#x2F;S框架更简单、速度更快、并且相对稳定、易于扩展和维护。&emsp; 该博客主要用于分享个人博客、日常分享、代码项目。下面将先展示博客结构，然后再按流程分析部署思路">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-04-15T08:18:49.286Z">
-<meta property="article:modified_time" content="2024-04-17T03:59:12.398Z">
+<meta property="article:modified_time" content="2024-04-17T08:34:31.094Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -2110,7 +2110,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1713327209335),
+    lastupdate: new Date(1713343604510),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2442,18 +2442,44 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <h2 id="作业概述"><a href="#作业概述" class="headerlink" title="作业概述"></a>作业概述</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <h2 id="作业概述"><a href="#作业概述" class="headerlink" title="作业概述"></a>作业概述</h2><p>&emsp; 本次作业基于Github和Hexo技术，快速部署静态博客网页，博客在运行过程中，不需要后端服务器和数据库支持，仅通过Node.js配合Html、CSS、JS进行配置即可完成博客的部署。部署的难度相对传统C&#x2F;S框架更简单、速度更快、并且相对稳定、易于扩展和维护。<br><br>&emsp; 该博客主要用于分享个人博客、日常分享、代码项目。下面将先展示<strong>博客结构</strong>，然后再按流程分析<strong>部署思路</strong>。</p>
+<h2 id="博客结构"><a href="#博客结构" class="headerlink" title="博客结构"></a>博客结构</h2><h3 id="1-博客封面"><a href="#1-博客封面" class="headerlink" title="1.博客封面"></a>1.博客封面</h3><p>&emsp; 包含四个按钮，第一个为博客跳转，第二个为照片分享，第三个为个人Github主页，第四个为博客源码。<br><img src="./博客作业概述/1.jpg" class="lazyload" data-srcset="./博客作业概述/1.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="border-radius: 2px;margin-left:0px;display:block;"/></p>
+<h3 id="2-博客首页"><a href="#2-博客首页" class="headerlink" title="2.博客首页"></a>2.博客首页</h3><p>&emsp; 在博客首页主要展示个人博客，个人信息框，以及站点统计。<br><img src="./博客作业概述/2.jpg" class="lazyload" data-srcset="./博客作业概述/2.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="border-radius: 2px;margin-left:0px;display:block;"/></p>
+<h3 id="3-博客页内容"><a href="#3-博客页内容" class="headerlink" title="3.博客页内容"></a>3.博客页内容</h3><p>&emsp; 博客页存在导航栏，以及评论区，用户可以在登录Github后进行评论。<br><img src="./博客作业概述/3.jpg" class="lazyload" data-srcset="./博客作业概述/3.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="border-radius: 2px;margin-left:0px;display:block;"/><br><img src="./博客作业概述/评论.jpg" class="lazyload" data-srcset="./博客作业概述/评论.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="border-radius: 2px;margin-left:0px;display:block;"/></p>
+<p>详见博客: <a target="_blank" rel="noopener" href="https://mrh233.github.io/2024/04/17/%E5%A6%82%E4%BD%95%E5%9F%BA%E4%BA%8Egiscus%E9%85%8D%E7%BD%AE%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/">如何基于giscus配置评论功能</a></p>
+<h3 id="4-分享页内容"><a href="#4-分享页内容" class="headerlink" title="4.分享页内容"></a>4.分享页内容</h3><p>&emsp; 分享页按时间排序，进行日常照片的分享。<br><img src="./博客作业概述/4.jpg" class="lazyload" data-srcset="./博客作业概述/4.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="border-radius: 2px;margin-left:0px;display:block;"/></p>
+<h2 id="部署思路"><a href="#部署思路" class="headerlink" title="部署思路"></a>部署思路</h2><h3 id="1-采用Github-Hexo"><a href="#1-采用Github-Hexo" class="headerlink" title="1. 采用Github+Hexo"></a>1. 采用Github+Hexo</h3><p>&emsp; Github为我们提供了免费的域名，而Hexo生态又有丰富的主题，方便配置和拓展，因此，使用Github+Hexo的思路进行部署。本文采用了<a target="_blank" rel="noopener" href="https://volantis.js.org/">Volantis主题</a> ,其是中文社区比较流行的主题，可以参考的文档也相对较多。</p>
+<h3 id="2-博客准备工作"><a href="#2-博客准备工作" class="headerlink" title="2. 博客准备工作"></a>2. 博客准备工作</h3><ul>
+<li><strong>2.1 下载和配置Git:</strong> 为了在本地建站、便于push和部署，我们需要Git工具</li>
+<li><strong>2.2 下载Node.js和Hexo:</strong> 为了使用Hexo，我们还需要下载Node.js</li>
+<li><input checked="" disabled="" type="checkbox"> 在上述工具下载完毕后，可以通过一下命令，安装Hexo博客，<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在空文件夹中创建本地Repositiory</span></span><br><span class="line"><span class="comment"># 安装博客</span></span><br><span class="line">$ npm install -g hexo-cli</span><br><span class="line"><span class="comment"># 当前文件夹下</span></span><br><span class="line">$ hexo init .</span><br><span class="line"><span class="comment"># 博客生成</span></span><br><span class="line">$ hexo g</span><br><span class="line"><span class="comment"># 开启本地服务 https://localhost:4000</span></span><br><span class="line">$ hexo s</span><br><span class="line"><span class="comment"># 本地文件部署到Remote上</span></span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></li>
+<li><strong>2.3 安装插件并配置_config.yml:</strong> 初始化后，博客还需要进一步配置，包括各种前端组件，还有一些拓展功能的插件，如博客计数器、路径转换器、评论系统…</li>
+</ul>
+<h3 id="3-博客实现的功能"><a href="#3-博客实现的功能" class="headerlink" title="3. 博客实现的功能"></a>3. 博客实现的功能</h3><ul>
+<li><strong>3.1 首页轮播图</strong>  </li>
+<li><strong>3.2 sidebar组件、文章计数统计功能</strong>  </li>
+<li><strong>3.3 按时间对文章进行排序</strong>  </li>
+<li><strong>3.4 文章分享QQ、微博</strong>  </li>
+<li><strong>3.5 照片分享页面</strong>  </li>
+<li><strong>3.6 相关页面跳转</strong>  </li>
+<li><strong>3.7 用户登录Github后，可以评论，标记表情🎄🎄🥰🥰</strong>  </li>
+<li><strong>3.8 Typora渲染公式（评论区）</strong>  </li>
+<li><strong>3.9 字体和光标设置</strong></li>
+</ul>
+<h3 id="4-遇到的问题"><a href="#4-遇到的问题" class="headerlink" title="4.遇到的问题"></a>4.遇到的问题</h3><ul>
+<li><p><strong>4.1 本地Git配置SSH:</strong> 本地Git工具为了和Remote仓库交互，需要配置SSH，可以用下面的命令和Setting完成配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置用户参数</span></span><br><span class="line">$ git config --global user.name <span class="string">&quot;xxx&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;xxx@xxx.com&quot;</span></span><br><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;xxx@xxx.com&quot;</span></span><br></pre></td></tr></table></figure>
+<img src="./博客作业概述/5.png" class="lazyload" data-srcset="./博客作业概述/5.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="border-radius: 2px;margin-left:0px;display:block;"/>
+</li>
+<li><p><strong>4.2 文件夹权限问题:</strong> 在配置过程中会发现有些命令行会无法执行，可以通过对本地Repo修改权限来解决</p>
+</li>
+</ul>
+<img src="./博客作业概述/6.jpg" class="lazyload" data-srcset="./博客作业概述/6.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="border-radius: 2px;margin-left:0px;display:block;"/>
+<img src="./博客作业概述/7.jpg" class="lazyload" data-srcset="./博客作业概述/7.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="border-radius: 2px;margin-left:0px;display:block;"/>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<ul>
+<li><strong>4.3 版本问题:</strong> 在配置过程中会发现有些文件夹对不上，还有评论系统会显示插件不存在的问题，评论系统存在的问题可以参考 <a target="_blank" rel="noopener" href="https://mrh233.github.io/2024/04/17/%E5%A6%82%E4%BD%95%E5%9F%BA%E4%BA%8Egiscus%E9%85%8D%E7%BD%AE%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/">如何基于giscus配置评论功能</a><br> 解决，volantis文件夹的主要功能如下所示，可在&#x2F;layout&#x2F;plugins中覆写插件，在source&#x2F;css&#x2F;_first&#x2F;cover_first.styl中覆写css样式。<img src="./博客作业概述/8.jpg" class="lazyload" data-srcset="./博客作业概述/8.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="border-radius: 2px;margin-left:0px;display:block;"/></li>
+</ul>
 
   </div>
   
@@ -2478,7 +2504,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-04-17T11:59:12+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-04-17T16:34:31+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Apr 17, 2024</p>
@@ -2559,7 +2585,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='prev' href='/2024/04/15/%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E8%B5%84%E6%BA%90%E5%B9%B3%E8%A1%A1%E9%97%AE%E9%A2%98/'>
           <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>不确定性环境下的资源平衡问题</p>
-          <p class='content'>
+          <p class='content'>~ ~ ~ ~如需转载请评论留言获得许可
+
 
 
 
@@ -2667,6 +2694,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     </span>
     <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
+      <p cst>欢迎评论~</p>
+    
 
     <div id="layoutHelper-comments"></div>
 
@@ -2705,7 +2734,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E6%A6%82%E8%BF%B0"><span class="toc-text">作业概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E6%A6%82%E8%BF%B0"><span class="toc-text">作业概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E7%BB%93%E6%9E%84"><span class="toc-text">博客结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8D%9A%E5%AE%A2%E5%B0%81%E9%9D%A2"><span class="toc-text">1.博客封面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5"><span class="toc-text">2.博客首页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8D%9A%E5%AE%A2%E9%A1%B5%E5%86%85%E5%AE%B9"><span class="toc-text">3.博客页内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%88%86%E4%BA%AB%E9%A1%B5%E5%86%85%E5%AE%B9"><span class="toc-text">4.分享页内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%80%9D%E8%B7%AF"><span class="toc-text">部署思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%87%87%E7%94%A8Github-Hexo"><span class="toc-text">1. 采用Github+Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8D%9A%E5%AE%A2%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">2. 博客准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8D%9A%E5%AE%A2%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-text">3. 博客实现的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">4.遇到的问题</span></a></li></ol></li></ol>
   </div>
 </section>
 
@@ -2897,7 +2926,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         data-lang="zh-CN"
         crossorigin="anonymous"
         async>
+volantis.layoutHelper("comments",`<div id="giscus_container"></div>`)
 </script>
+
     
 
 
@@ -2983,7 +3014,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/034.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1660614606622/media/wallpaper/minimalist/2020/042.webp"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -3218,7 +3249,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"奕皓的个人博客","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"本站点用于分享个人博客、日常，以及项目进展"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"奕皓的个人博客"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/2024/04/15/博客作业概述/","name":"博客作业报告"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"奕皓的个人博客","url":"http://example.com/","keywords":null,"description":"本站点用于分享个人博客、日常，以及项目进展","author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"本站点用于分享个人博客、日常，以及项目进展"},"publisher":{"@type":"Organization","name":"奕皓的个人博客","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"博客作业报告","description":"本站点用于分享个人博客、日常，以及项目进展","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/04/15/%E5%8D%9A%E5%AE%A2%E4%BD%9C%E4%B8%9A%E6%A6%82%E8%BF%B0/"},"author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"奕皓的个人博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/2024/04/15/%E5%8D%9A%E5%AE%A2%E4%BD%9C%E4%B8%9A%E6%A6%82%E8%BF%B0/","wordCount":0,"datePublished":"2024-04-15T08:18:49.286Z","dateModified":"2024-04-17T03:59:12.398Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"奕皓的个人博客","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"本站点用于分享个人博客、日常，以及项目进展"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"奕皓的个人博客"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/2024/04/15/博客作业概述/","name":"博客作业报告"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"奕皓的个人博客","url":"http://example.com/","keywords":null,"description":"本站点用于分享个人博客、日常，以及项目进展","author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"本站点用于分享个人博客、日常，以及项目进展"},"publisher":{"@type":"Organization","name":"奕皓的个人博客","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"博客作业报告","description":"本站点用于分享个人博客、日常，以及项目进展","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/04/15/%E5%8D%9A%E5%AE%A2%E4%BD%9C%E4%B8%9A%E6%A6%82%E8%BF%B0/"},"author":{"@type":"Person","name":"John Doe","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"奕皓的个人博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/2024/04/15/%E5%8D%9A%E5%AE%A2%E4%BD%9C%E4%B8%9A%E6%A6%82%E8%BF%B0/","wordCount":0,"datePublished":"2024-04-15T08:18:49.286Z","dateModified":"2024-04-17T08:34:31.094Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
